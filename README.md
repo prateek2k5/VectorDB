@@ -1,104 +1,137 @@
 # 🚀 VectorDB – Build Your Own AI
 
-A C++ based Vector Database project that combines vector search, document storage, and AI-powered question answering using Retrieval-Augmented Generation (RAG).
+A C++ based Vector Database project with vector similarity search, document storage, and AI-powered question answering using Retrieval-Augmented Generation (RAG).
 
 ## ✨ Features
 
-- 🔍 Vector similarity search
-- ⚡ HNSW-based vector indexing
-- 📄 Document insertion and storage
-- 🧠 Semantic document search
-- 🤖 AI-powered question answering
-- 🌐 Web-based user interface
-- 🔗 REST API using C++
+- Vector storage and similarity search
+- HNSW-based vector indexing
+- Document insertion and search
+- Semantic search
+- AI-powered question answering
+- Web-based user interface
+- C++ REST API
+- Ollama integration
 
-## 🛠️ Tech Stack
+## 🛠️ Technologies Used
 
-- **Language:** C++17
-- **Vector Search:** HNSW
-- **AI Integration:** Ollama
-- **Embedding Model:** nomic-embed-text
-- **Language Model:** llama3.2
-- **HTTP Server:** cpp-httplib
-- **Frontend:** HTML, CSS, JavaScript
+- C++17
+- HNSW
+- cpp-httplib
+- Ollama
+- nomic-embed-text
+- llama3.2
+- HTML, CSS and JavaScript
 
-## 📁 Project Structure
+---
 
-```text
-VectorDB/
-│
-├── main.cpp
-├── httplib.h
-├── index.html
-├── Dockerfile
-├── .gitignore
-└── README.md
+# 💻 How to Run the Project on Windows
+
+Follow these steps carefully.
+
+## PART 1: First-Time Setup
+
+Complete these steps only once when setting up the project for the first time.
+
+### Step 1: Install Required Software
+
+Install the following:
+
+1. **Git:** https://git-scm.com/
+2. **GCC Compiler (MinGW):** https://www.mingw-w64.org/
+3. **Ollama:** https://ollama.com/download
+
+After installing GCC, make sure its `bin` folder is added to your Windows PATH.
+
+Check installation:
+
+Open PowerShell and run:
+
+```powershell
+g++ --version
 ```
 
-## ⚙️ Installation & Setup
+```powershell
+ollama --version
+```
 
-### 1. Clone the Repository
+Both commands should display version information.
 
-```bash
+### Step 2: Download the Project
+
+Open PowerShell.
+
+Run:
+
+```powershell
 git clone https://github.com/prateek2k5/VectorDB.git
+```
+
+Move into the project folder:
+
+```powershell
 cd VectorDB
 ```
 
-### 2. Install Requirements
+### Step 3: Download AI Models
 
-Make sure you have installed:
+Run these commands in PowerShell:
 
-- GCC C++ Compiler
-- C++17 support
-- Git
-- [Ollama](https://ollama.com/download)
-
-### 3. Download Ollama Models
-
-Open your terminal and run:
-
-```bash
+```powershell
 ollama pull nomic-embed-text
+```
+
+```powershell
 ollama pull llama3.2
 ```
 
-### 4. Start Ollama
+These models are downloaded once. You do not need to download them every time you run the project.
 
-```bash
-ollama serve
-```
+### Step 4: Compile the Project
 
-Keep Ollama running in the background.
+Make sure PowerShell is inside the VectorDB project folder.
 
-### 5. Compile the Project
+Run:
 
-**Windows (MinGW):**
-
-```bash
+```powershell
 g++ -std=c++17 -O2 -pthread main.cpp -o vectordb.exe
 ```
 
-**Linux:**
+If compilation succeeds, a `vectordb.exe` file will be created in the project folder.
 
-```bash
-g++ -std=c++17 -O2 -pthread main.cpp -o vectordb
+### Step 5: Start Ollama
+
+Open a **second PowerShell window**.
+
+Run:
+
+```powershell
+ollama serve
 ```
 
-### 6. Run the Project
+Keep this window open while using the AI features.
 
-**Windows:**
+If Ollama is already running in the background, you do not need to start it again.
 
-```bash
+### Step 6: Start VectorDB
+
+Return to the first PowerShell window.
+
+Make sure you are inside the project folder.
+
+Run:
+
+```powershell
 .\vectordb.exe
 ```
 
-**Linux:**
+The C++ server will start.
 
-```bash
-./vectordb
-```
+Keep this window open too.
 
-### 7. Open in Browser
+### Step 7: Open the Website
+
+Open Google Chrome or another browser.
 
 Visit:
 
@@ -106,52 +139,138 @@ Visit:
 http://localhost:8080
 ```
 
-If your application uses a different port, open the port configured in `main.cpp`.
+If your server is configured to use another port, use that port instead.
 
-## 💡 How It Works
+You can now use:
 
-1. Users can store and search vector data.
-2. Documents are divided into smaller chunks.
-3. Ollama generates embeddings for document chunks.
-4. Relevant document chunks are retrieved using vector similarity search.
-5. The retrieved context is passed to the language model.
-6. The AI generates an answer based on the retrieved information.
+- **Search:** Search vector records.
+- **Documents:** Insert and search documents.
+- **Ask AI:** Ask questions using document context.
 
-## 🔧 Troubleshooting
+---
 
-**Ollama unavailable:**
+# 🔄 PART 2: How to Restart the Project
 
-```bash
+You do NOT need to clone the repository, download models, or compile the project again every time.
+
+Whenever you close everything and want to run the project again:
+
+### Step 1: Open PowerShell
+
+Open PowerShell and move into your existing project folder:
+
+```powershell
+cd "$HOME\Downloads\VectorDB"
+```
+
+If your project is saved somewhere else, use that folder's actual path.
+
+### Step 2: Start Ollama
+
+Open another PowerShell window.
+
+Run:
+
+```powershell
 ollama serve
 ```
 
-**Model not found:**
+If Ollama is already running, skip this command.
 
-```bash
+### Step 3: Start VectorDB
+
+In the first PowerShell window, run:
+
+```powershell
+.\vectordb.exe
+```
+
+### Step 4: Open the Browser
+
+Visit:
+
+```text
+http://localhost:8080
+```
+
+Your project is running again!
+
+---
+
+# 🛑 How to Stop the Project
+
+To stop the C++ server:
+
+1. Open the terminal running VectorDB.
+2. Press `Ctrl + C`.
+
+To stop Ollama manually:
+
+1. Open the terminal running Ollama.
+2. Press `Ctrl + C`.
+
+You can close the browser whenever you want.
+
+---
+
+# 🧰 Troubleshooting
+
+### 1. Ollama Unavailable
+
+Make sure Ollama is running:
+
+```powershell
+ollama serve
+```
+
+### 2. Model Not Found
+
+Download the models:
+
+```powershell
 ollama pull nomic-embed-text
 ollama pull llama3.2
 ```
 
-**Compilation issues:**
+### 3. g++ Is Not Recognized
 
-- Check that GCC is installed.
-- Make sure C++17 is supported.
-- Verify that `httplib.h` is present.
+Install GCC and add its `bin` folder to the Windows PATH.
 
-## 🔐 Security
+Restart PowerShell and check:
 
-- Never upload API keys or `.env` files to GitHub.
-- Keep private credentials in environment variables.
-- Do not expose secrets in frontend code.
+```powershell
+g++ --version
+```
 
-## 👨‍💻 Developer
+### 4. vectordb.exe Not Found
 
-**Prateek Verma**
+Compile the project again:
 
-## 📜 License
+```powershell
+g++ -std=c++17 -O2 -pthread main.cpp -o vectordb.exe
+```
 
-Created for educational and learning purposes.
+### 5. Website Is Not Opening
+
+- Check whether the C++ server is running.
+- Check the port configured in `main.cpp`.
+- Make sure the browser URL uses the correct port.
 
 ---
 
-⭐ If you find this project useful, consider giving it a star!
+# 🔐 Security
+
+- Never upload `.env` files or private API keys to GitHub.
+- Keep credentials private.
+- Do not expose API keys in frontend code.
+
+---
+
+# 👨‍💻 Developer
+
+**Prateek Verma**
+
+## ⭐ Support
+
+If you find this project useful, consider giving the repository a star!
+
