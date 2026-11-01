@@ -155,16 +155,156 @@ button {
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   VECTORDB SIGNATURE REDESIGN — visual layer only
+   Existing IDs, controls and JavaScript behavior are preserved.
+═══════════════════════════════════════════════════════════ */
+:root {
+  --bg: #090711;
+  --card: #100d1b;
+  --border: #29203b;
+  --accent: #b36bff;
+  --math: #e0a2ff;
+  --text: #f1eaff;
+  --muted: #9184a8;
+  --panel-glow: rgba(179,107,255,.12);
+}
+html { background: var(--bg); }
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(ellipse at 48% -18%, rgba(160,74,255,.19), transparent 42%),
+                    radial-gradient(ellipse at 100% 100%, rgba(235,91,183,.055), transparent 35%);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", sans-serif;
+  letter-spacing: .1px;
+}
+.app-header {
+  min-height: 72px;
+  padding: 10px 22px;
+  gap: 18px;
+  background: rgba(13,10,23,.94);
+  border-bottom: 1px solid rgba(190,139,255,.22);
+  box-shadow: 0 8px 30px rgba(0,0,0,.22);
+  position: relative;
+  z-index: 5;
+}
+.app-header::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, #a855f7 28%, #ec4899 72%, transparent);
+  opacity: .65;
+}
+.brand-lockup { display:flex; align-items:center; gap:12px; min-width:255px; }
+.brand-mark {
+  width:39px; height:39px; display:grid; place-items:center; position:relative;
+  border:1px solid rgba(204,157,255,.6); border-radius:12px;
+  color:#fff; font-size:21px; font-weight:800;
+  background:linear-gradient(145deg,rgba(174,91,255,.32),rgba(236,72,153,.13));
+  box-shadow:0 0 22px rgba(168,85,247,.22), inset 0 0 14px rgba(255,255,255,.05);
+}
+.brand-mark span { position:absolute; right:4px; top:2px; font-size:9px; color:#f0b5ff; }
+.brand-copy h1 {
+  font-family:Inter,"Segoe UI",sans-serif; font-size:16px; font-weight:850;
+  letter-spacing:2.8px; line-height:1.2; color:#fff;
+  background:none; -webkit-text-fill-color:initial;
+}
+.brand-copy h1 span { color:#c084fc; }
+.brand-caption { margin-top:5px; font-size:8px; letter-spacing:1.15px; color:#8e819f; white-space:nowrap; }
+.brand-caption i { display:inline-block; width:4px; height:4px; margin:0 6px 1px; border-radius:50%; background:#d16cff; box-shadow:0 0 7px #d16cff; }
+.brand-caption b { color:#e2c6ff; font-weight:700; }
+.header-tags { display:flex; align-items:center; gap:7px; }
+.badge { border-radius:5px; padding:5px 9px; font-family:Inter,"Segoe UI",sans-serif; font-size:9px; font-weight:700; letter-spacing:1px; background:rgba(255,255,255,.025); }
+.badge.hl { background:rgba(179,107,255,.13); border-color:rgba(179,107,255,.5); color:#d8adff; }
+#statsLabel { color:#9c8eae; font-family:Inter,"Segoe UI",sans-serif; font-size:10px; letter-spacing:.4px; }
+.layout { gap:0; padding:12px; }
+.left-panel, .right-panel {
+  background:rgba(17,13,29,.92); border:1px solid rgba(160,125,195,.17);
+  border-radius:13px; box-shadow:0 12px 35px rgba(0,0,0,.2), 0 0 25px rgba(168,85,247,.035);
+}
+.left-panel { width:270px; margin-right:12px; padding:17px 14px; gap:17px; }
+.left-panel > div {
+  padding:12px; border:1px solid rgba(164,130,196,.13); border-radius:9px;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+}
+.sec { color:#a994bf; font-family:Inter,"Segoe UI",sans-serif; font-size:9px; font-weight:750; letter-spacing:1.45px; }
+.center-panel {
+  margin-right:12px; border:1px solid rgba(160,125,195,.16); border-radius:13px;
+  background-color:rgba(13,10,22,.72);
+  background-image:linear-gradient(rgba(180,130,220,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(180,130,220,.045) 1px,transparent 1px),radial-gradient(ellipse at center,rgba(135,68,190,.09),transparent 68%);
+  background-size:32px 32px,32px 32px,auto;
+  box-shadow:inset 0 0 70px rgba(0,0,0,.22);
+}
+.right-panel { width:375px; }
+.tabs { background:rgba(255,255,255,.018); border-radius:13px 13px 0 0; }
+.tab { padding:14px 6px; font-family:Inter,"Segoe UI",sans-serif; font-weight:700; font-size:9px; letter-spacing:1.05px; }
+.tab.on { color:#d7aaff; border-bottom-color:#c084fc; text-shadow:0 0 12px rgba(192,132,252,.35); }
+.tab-content { padding:17px; gap:17px; }
+input[type=text], select, textarea {
+  background:rgba(7,5,13,.78); border:1px solid #302442; border-radius:8px;
+  color:#f2eaff; padding:10px 12px; font-family:Inter,"Segoe UI",sans-serif; font-size:12px;
+}
+input[type=text]:focus, select:focus, textarea:focus { border-color:#b36bff; box-shadow:0 0 0 3px rgba(179,107,255,.1); }
+button { border-radius:8px; font-family:Inter,"Segoe UI",sans-serif; font-weight:750; }
+.btn-p {
+  background:linear-gradient(105deg,#8744d6,#b34edb 55%,#df5eae); color:#fff;
+  box-shadow:0 5px 18px rgba(164,75,218,.2); text-transform:uppercase;
+}
+.btn-p:hover { box-shadow:0 7px 24px rgba(190,83,235,.38); transform:translateY(-1px); }
+.btn-s { background:rgba(255,255,255,.055); border:1px solid rgba(180,145,210,.16); color:#d9cce8; }
+.btn-s:hover { background:rgba(179,107,255,.12); }
+.algo-btn { border-radius:7px; font-family:Inter,"Segoe UI",sans-serif; }
+.algo-btn.on { background:rgba(179,107,255,.14); border-color:#a85df0; color:#d9adff; box-shadow:inset 0 0 14px rgba(179,107,255,.07); }
+.rcard, .dcard, .ollama-status, .chat-a, .chat-q {
+  border-radius:9px; border-color:rgba(164,130,196,.2); background:rgba(8,6,15,.72);
+}
+.rcard:hover, .dcard:hover { border-color:rgba(192,132,252,.55); }
+.dcard-title { color:#d8a6ff; }
+.chat-q { background:rgba(153,83,219,.12); border-color:rgba(179,107,255,.22); }
+.chat-a-label { color:#d7aaff; }
+.ctx-chip { background:rgba(179,107,255,.12); border-color:rgba(179,107,255,.25); color:#d5aaff; }
+.lat-big { color:#df9cff; text-shadow:0 0 22px rgba(203,119,255,.38); }
+.lnum { color:#c084fc; }
+.lfill { background-color:#b36bff; }
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-thumb { background:#49345f; border-radius:8px; }
+@media (max-width: 1050px) {
+  .left-panel { width:235px; }
+  .right-panel { width:330px; }
+  .brand-lockup { min-width:220px; }
+}
+@media (max-width: 760px) {
+  body { height:auto; min-height:100vh; overflow:auto; }
+  .app-header { flex-wrap:wrap; padding:10px 13px; }
+  .brand-lockup { min-width:0; flex:1; }
+  .brand-caption { font-size:7px; }
+  .header-tags { order:3; }
+  #statsLabel { font-size:9px; }
+  .layout { flex-direction:column; overflow:visible; padding:9px; gap:10px; }
+  .left-panel, .right-panel, .center-panel { width:100%; margin:0; }
+  .center-panel { min-height:380px; }
+  .right-panel { min-height:460px; }
+  .left-panel { overflow:visible; }
+}
+
 </style>
 </head>
 <body>
 
-<header>
-  <h1>padhowithPratyush</h1>
+<header class="app-header">
+  <div class="brand-lockup">
+    <div class="brand-mark">V<span>✦</span></div>
+    <div class="brand-copy">
+      <h1>VECTOR<span>DB</span></h1>
+      <div class="brand-caption">LOCAL AI WORKBENCH <i></i> BUILT BY <b>PRATEEK VERMA</b></div>
+    </div>
+  </div>
+  <div class="header-tags">
   <span class="badge hl">HNSW</span>
   <span class="badge">KD-TREE</span>
   <span class="badge">BRUTE FORCE</span>
   <span class="badge" id="ollamaBadge">OLLAMA…</span>
+  </div>
   <span id="statsLabel">loading…</span>
 </header>
 
