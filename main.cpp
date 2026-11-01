@@ -1,5 +1,6 @@
 #include "httplib.h"
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -1084,6 +1085,8 @@ int main() {
             "text/html");
     });
 
-    svr.listen("0.0.0.0", 8080);
+    const char* portEnv = std::getenv("PORT");
+    int port = portEnv ? std::stoi(portEnv) : 8080;
+    svr.listen("0.0.0.0", port);
     return 0;
 }
