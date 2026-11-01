@@ -182,7 +182,7 @@ If Ollama is already running, skip this command.
 In the first PowerShell window, run:
 
 ```powershell
-.\vectordb.exe
+.\db.exe
 ```
 
 ### Step 4: Open the Browser
