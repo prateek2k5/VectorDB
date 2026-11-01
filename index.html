@@ -657,7 +657,10 @@ async function loadItems() {
       bounds={minX:x0-px,maxX:x1+px,minY:y0-py,maxY:y1+py};
     }
     document.getElementById('statsLabel').textContent=allItems.length+' vectors · '+DIMS+' dims';
-  } catch(_) {}
+  } catch(error) {
+  console.error('VectorDB loading error:', error);
+  document.getElementById('statsLabel').textContent = 'Connection Error';
+}
 }
 
 // ════════════════════════════════════════════════════════════
